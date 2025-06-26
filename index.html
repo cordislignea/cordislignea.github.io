@@ -251,16 +251,52 @@
 
 
 
+/* Mostrar solo en desktop */
+.desktop-only {
+  display: block;
+}
+
+.mobile-only {
+  display: none;
+}
+
 @media (max-width: 767px) {
-  .banner {
+  nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  nav a {
+    font-size: 14px;
+  }
+
+  main {
+    padding: 20px 1rem;
+  }
+
+  .producto img {
+    max-height: 250px;
+  }
+
+  .desktop-only {
+    display: none;
+  }
+
+  .mobile-only {
+    display: block;
+  }
+
+  .mobile-banner {
     width: 95%;
     height: auto;
+    display: block;
+    margin: 20px auto;
     max-height: 300px;
-    margin: 20px auto 1.5rem auto;
-    background-size: contain;
-    background-position: center center;
+    object-fit: contain;
   }
 }
+
 
 
 
@@ -303,20 +339,21 @@
     </div>
   </header>
 
-  <!-- Banner grande centrado -->
- 
-<!-- SLIDER INTEGRADO -->
-<section class="slider" id="slider">
-  <div class="slide active" style="background-image: url('https://raw.githubusercontent.com/cordislignea/cordislignea.github.io/main/banner-desktop.png');"></div>
-  <div class="slide" style="background-image: url('https://raw.githubusercontent.com/cordislignea/cordislignea.github.io/main/banner-desktop2.png');"></div>
-</section>
-
   
 
+<!-- SLIDER INTEGRADO -->
+<section class="slider" id="slider">
+  <div class="slide active desktop-only" style="background-image: url('https://raw.githubusercontent.com/cordislignea/cordislignea.github.io/main/banner-desktop.png');"></div>
+  <div class="slide desktop-only" style="background-image: url('https://raw.githubusercontent.com/cordislignea/cordislignea.github.io/main/banner-desktop2.png');"></div>
 
-
-
-
+  <!-- Versión mobile con <img> -->
+  <div class="slide mobile-only">
+    <img src="https://raw.githubusercontent.com/cordislignea/cordislignea.github.io/main/banner-mobile%20.png" alt="Banner Mobile 1" class="mobile-banner" />
+  </div>
+  <div class="slide mobile-only">
+    <img src="https://raw.githubusercontent.com/cordislignea/cordislignea.github.io/main/banner-mobile%202.png" alt="Banner Mobile 2" class="mobile-banner" />
+  </div>
+</section>
 
 
 
