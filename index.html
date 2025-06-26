@@ -1,0 +1,390 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cordis Lignea - Vidriera Virtual</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Playfair Display', serif;
+      background-color: #FFF4EB;
+      color: #3a3a3a;
+      padding-top: 110px;
+      margin: 0;
+    }
+
+    /* Barra de anuncio */
+    .anuncio {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #333333;
+      color: #FFCA9D;
+      text-align: center;
+      padding: 6px 0;
+      font-weight: 400;
+      font-size: 14px;
+      letter-spacing: 0.05em;
+      z-index: 1100;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .anuncio.oculto {
+      transform: translateY(-100%);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* Header sin sombra */
+    header {
+      position: fixed;
+      top: 30px;
+      left: 0;
+      width: 100%;
+      background-color: #FFF4EB;
+      z-index: 1000;
+      padding: 20px 0;
+      transition: top 0.3s ease, padding 0.3s ease;
+    }
+
+    header.scrolled {
+      top: 0;
+      padding: 8px 0;
+    }
+
+    .header-container {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 0 1rem;
+    }
+
+    .logo img {
+      height: 130px;
+      transition: height 0.3s ease;
+    }
+
+    header.scrolled .logo img {
+      height: 60px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: inline-flex;
+      margin-top: 15px;
+      gap: 30px;
+      padding: 0;
+      justify-content: center;
+    }
+
+    nav a {
+      color: #333333;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 16px;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #FF963B;
+    }
+
+
+
+/* Slider automático para banners */
+.slider {
+  width: 100%;
+  max-width: 1140px;
+  height: 500px;
+  margin: 100px auto 2rem auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.slide {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: opacity 1s ease-in-out;
+}
+
+.slide.active {
+  opacity: 1;
+}
+
+@media (max-width: 767px) {
+  .slider {
+    height: 300px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 30px 1rem;
+    }
+
+    .grid-container {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: 767px) {
+      .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .producto {
+      background: white;
+      border-radius: 6px;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.2s ease;
+    }
+
+    .producto:hover {
+      transform: scale(1.03);
+    }
+
+    .producto img {
+      width: 100%;
+      height: auto;
+      max-height: 350px;
+      object-fit: cover;
+      border-radius: 4px;
+      margin-bottom: 0.8rem;
+    }
+
+    .producto-nombre {
+      font-weight: 600;
+      color: #FF963B;
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+
+    .producto-descripcion {
+      font-size: 0.9rem;
+      color: #555;
+      text-align: center;
+      flex-grow: 1;
+      margin-bottom: 0.7rem;
+    }
+
+    .producto-precio {
+      background-color: #FFC089;
+      color: #333;
+      font-weight: bold;
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+      user-select: none;
+      margin-bottom: 1rem;
+    }
+
+    .btn-consulta {
+      background-color: #FF963B;
+      color: white;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 20px;
+      cursor: pointer;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-consulta:hover {
+      background-color: #e07b2f;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.85rem;
+      color: #999;
+      margin: 3rem 0 1rem 0;
+    }
+
+    @media(max-width: 767px) {
+      nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+      }
+      nav a {
+        font-size: 14px;
+      }
+      main {
+        padding: 20px 1rem;
+      }
+      .producto img {
+        max-height: 250px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Barra de anuncio -->
+  <div class="anuncio" id="anuncio">
+    • Diseño y calidad en madera maciza •
+  </div>
+
+  <!-- Header -->
+  <header id="header">
+    <div class="header-container">
+      <div class="logo">
+        <img src="https://raw.githubusercontent.com/cordislignea/cordislignea.github.io/main/logo.png" alt="Logo Cordis Lignea" />
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#muebles">Muebles</a></li>
+          <li><a href="#sobre">Sobre Cordis</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Banner grande centrado -->
+ 
+<!-- SLIDER INTEGRADO -->
+<section class="slider" id="slider">
+  <div class="slide active" style="background-image: url('https://raw.githubusercontent.com/cordislignea/cordislignea.github.io/main/banner-desktop.png');"></div>
+  <div class="slide" style="background-image: url('https://raw.githubusercontent.com/cordislignea/cordislignea.github.io/main/banner-desktop2.png');"></div>
+</section>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<main>
+    <section class="grid-container" id="muebles">
+      <!-- Producto de ejemplo -->
+      <article class="producto">
+        <img src="ruta/a/tu/imagen1.jpg" alt="Mueble 1" />
+        <div class="producto-nombre">Mueble 1</div>
+        <div class="producto-descripcion">Descripción breve del mueble 1.</div>
+        <div class="producto-precio">$10.000</div>
+        <a href="mailto:contacto@cordislignea.com?subject=Consulta%20por%20Mueble%201" class="btn-consulta">Consultar</a>
+      </article>
+    </section>
+  </main>
+
+  <footer id="contacto">
+    © Cordis Lignea - Carpintería Artesanal
+  </footer>
+
+  <script>
+    const header = document.getElementById('header');
+    const anuncio = document.getElementById('anuncio');
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+        anuncio.classList.add('oculto');
+      } else {
+        header.classList.remove('scrolled');
+        anuncio.classList.remove('oculto');
+      }
+    });
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  const header = document.getElementById('header');
+  const anuncio = document.getElementById('anuncio');
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      header.classList.add('scrolled');
+      anuncio.classList.add('oculto');
+    } else {
+      header.classList.remove('scrolled');
+      anuncio.classList.remove('oculto');
+    }
+  });
+</script>
+
+
+
+
+
+
+
+<script>
+  const slides = document.querySelectorAll(".slide");
+  const isMobile = window.matchMedia("(max-width: 767px)").matches;
+
+  if (isMobile) {
+    slides[0].style.backgroundImage = "url('https://raw.githubusercontent.com/cordislignea/cordislignea.github.io/main/banner-mobile%20.png')";
+    slides[1].style.backgroundImage = "url('https://raw.githubusercontent.com/cordislignea/cordislignea.github.io/main/banner-mobile%202.png')";
+  }
+
+  let current = 0;
+  setInterval(() => {
+    slides[current].classList.remove("active");
+    current = (current + 1) % slides.length;
+    slides[current].classList.add("active");
+  }, 5000);
+</script>
+
+
+
+
+
+
+
+</body>
+</html>
