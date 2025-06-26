@@ -132,6 +132,18 @@
   }
 }
 
+.slide {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 0;
+}
+
+.slide.active {
+  position: relative;
+  z-index: 1;
+}
 
 
 
@@ -281,6 +293,26 @@
 
 
 
+<script>
+  const slides = document.querySelectorAll('.slider .slide');
+  let currentIndex = 0;
+  const slideInterval = 4000; // 4 segundos
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === index);
+    });
+  }
+
+  function nextSlide() {
+    currentIndex = (currentIndex + 1) % slides.length;
+    showSlide(currentIndex);
+  }
+
+  // Iniciar
+  showSlide(currentIndex);
+  setInterval(nextSlide, slideInterval);
+</script>
 
 
 
