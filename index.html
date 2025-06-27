@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cordis Lignea</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     * {
       margin: 0;
@@ -78,6 +78,19 @@
       transition: color 0.3s;
     }
 
+    /* Menú hamburguesa - oculto por defecto en desktop */
+    .hamburguesa {
+      display: none;
+      cursor: pointer;
+      font-size: 1.5rem;
+      position: absolute;
+      left: 20px; /* a la izquierda */
+      top: 50%;
+      transform: translateY(-50%);
+      user-select: none;
+      z-index: 1001;
+    }
+
     .banner {
       max-width: 1200px;
       width: 95%;
@@ -147,23 +160,58 @@
       margin-bottom: 10px;
     }
 
+    /* Ajustes para mobile */
     @media (max-width: 768px) {
       header {
         top: 25px;
+        flex-direction: row;
+        justify-content: center;
+        position: sticky;
+        padding: 10px 0;
       }
 
-      .anuncio {
-        font-size: 0.8rem;
+      /* Logo centrado en mobile */
+      header img {
+        order: 2; /* para centrarlo */
+        height: 60px;
+        transition: height 0.3s ease;
       }
 
-      nav {
-        display: none;
+      header.shrink img {
+        height: 40px;
       }
 
+      /* Mostrar hamburguesa, posicionada a la izquierda */
       .hamburguesa {
         display: block;
-        cursor: pointer;
-        font-size: 1.5rem;
+        order: 1; /* izquierda */
+      }
+
+      /* Navegación oculta en mobile por defecto */
+      nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: #FFF4EB;
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px 0;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        z-index: 998;
+      }
+
+      nav.open {
+        display: flex;
+      }
+
+      nav a {
+        padding: 10px 20px;
+        font-size: 1.1rem;
+        text-align: center;
+        color: #333333;
+        font-weight: 600;
       }
 
       .grid-productos {
@@ -176,9 +224,9 @@
   <div class="anuncio">• Diseño y calidad en madera maciza •</div>
 
   <header id="mainHeader">
-    <img src="https://raw.githubusercontent.com/cordislignea/cordislignea.github.io/main/logo.png" alt="Cordis Lignea">
-    <div class="hamburguesa">☰</div>
-    <nav>
+    <div class="hamburguesa" id="btnHamburguesa">☰</div>
+    <img src="https://raw.githubusercontent.com/cordislignea/cordislignea.github.io/main/logo.png" alt="Cordis Lignea" />
+    <nav id="navMenu">
       <a href="#">Inicio</a>
       <a href="#">Productos</a>
       <a href="#">Contacto</a>
@@ -191,14 +239,14 @@
   <main>
     <section class="banner">
       <picture>
-        <source media="(max-width: 768px)" srcset="https://raw.githubusercontent.com/cordislignea/cordislignea.github.io/blob/main/banner-mobile%20.png">
-        <img src="https://raw.githubusercontent.com/cordislignea/cordislignea.github.io/main/banner-desktop.png" alt="Banner Cordis Lignea">
+        <source media="(max-width: 768px)" srcset="https://raw.githubusercontent.com/cordislignea/cordislignea.github.io/blob/main/banner-mobile%20.png" />
+        <img src="https://raw.githubusercontent.com/cordislignea/cordislignea.github.io/main/banner-desktop.png" alt="Banner Cordis Lignea" />
       </picture>
     </section>
 
     <section class="grid-productos">
       <div class="producto">
-        <img src="imagen-producto1.jpg" alt="Mueble 1">
+        <img src="imagen-producto1.jpg" alt="Mueble 1" />
         <h3>Nombre del Mueble</h3>
         <p class="precio">$XX.XXX,00</p>
         <a class="ver-mas" href="#">Ver más</a>
@@ -208,7 +256,7 @@
   </main>
 
   <footer>
-    <img src="https://raw.githubusercontent.com/cordislignea/cordislignea.github.io/main/logo.png" alt="Cordis Lignea">
+    <img src="https://raw.githubusercontent.com/cordislignea/cordislignea.github.io/main/logo.png" alt="Cordis Lignea" />
     <p>Seguinos en nuestras redes y contactanos:</p>
     <p>cordisligneadeco@gmail.com</p>
     <p>Pablo Podestá, zona de retiro</p>
@@ -217,8 +265,17 @@
 
   <script>
     const header = document.getElementById('mainHeader');
+    const btnHamburguesa = document.getElementById('btnHamburguesa');
+    const navMenu = document.getElementById('navMenu');
+
+    // Efecto shrink header
     window.addEventListener('scroll', () => {
       header.classList.toggle('shrink', window.scrollY > 50);
+    });
+
+    // Toggle menú hamburguesa en mobile
+    btnHamburguesa.addEventListener('click', () => {
+      navMenu.classList.toggle('open');
     });
   </script>
 </body>
