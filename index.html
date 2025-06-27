@@ -263,9 +263,9 @@
 
   .banner-mobile-fijo img {
     width: 100%;
-    height: auto;
-    max-height: 950px;
-    object-fit: contain;
+    height: auto; /* esto mantiene proporción */
+    max-height: 100vh; /* se adapta a la altura de la pantalla */
+    object-fit: cover; /* si querés que llene todo sin deformar */
     display: block;
   }
 
