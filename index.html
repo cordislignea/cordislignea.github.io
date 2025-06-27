@@ -2,447 +2,224 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Cordis Lignea - Vidriera Virtual</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cordis Lignea</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
+
     body {
       font-family: 'Playfair Display', serif;
       background-color: #FFF4EB;
-      color: #3a3a3a;
-      padding-top: 110px;
-      margin: 0;
+      color: #333333;
     }
+
+    a {
+      color: #FFCA9D;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #FF963B;
+    }
+
     .anuncio {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: #333333;
+      background-color: #000000;
       color: #FFCA9D;
       text-align: center;
       padding: 6px 0;
-      font-weight: 400;
-      font-size: 14px;
-      letter-spacing: 0.05em;
-      z-index: 1100;
-      transition: transform 0.3s ease, opacity 0.3s ease;
-    }
-    .anuncio.oculto {
-      transform: translateY(-100%);
-      opacity: 0;
-      pointer-events: none;
-    }
-    header {
+      font-size: 0.9rem;
       position: fixed;
-      top: 30px;
-      left: 0;
+      top: 0;
       width: 100%;
-      background-color: #FFF4EB;
       z-index: 1000;
-      padding: 20px 0;
-      transition: top 0.3s ease, padding 0.3s ease;
     }
-    header.scrolled {
-      top: 0;
-      padding: 8px 0;
-    }
-    .header-container {
-      max-width: 900px;
-      margin: 0 auto;
-      text-align: center;
-      padding: 0 1rem;
-    }
-    .logo img {
-      height: 130px;
-      transition: height 0.3s ease;
-    }
-    header.scrolled .logo img {
-      height: 60px;
-    }
-    nav ul {
-      list-style: none;
-      display: inline-flex;
-      margin-top: 15px;
-      gap: 30px;
-      justify-content: center;
-      padding: 0;
-    }
-    nav a {
-      color: #333333;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 16px;
-      transition: color 0.3s ease;
-    }
-    nav a:hover {
-      color: #FF963B;
-    }
-   
 
-
-
-
- .slider {
-      width: 100%;
-      max-width: 1140px;
-      height: 500px;
-      margin: 100px auto 2rem auto;
-      position: relative;
-      overflow: hidden;
-    }
-   
- .slide {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      transition: opacity 0.8s ease-in-out, visibility 0s linear 0.8s;
-      z-index: 0;
-    }
-    .slide.active {
-      opacity: 1;
-      visibility: visible;
-      pointer-events: auto;
-      z-index: 1;
-      position: relative;
-      transition-delay: 0s;
-    }
-    @media (max-width: 767px) {
-      .slider {
-        height: 300px;
-      }
-    }
-    main {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 30px 1rem;
-    }
-    .grid-container {
-      display: grid;
-      gap: 1.5rem;
-      grid-template-columns: repeat(3, 1fr);
-    }
-    @media (max-width: 767px) {
-      .grid-container {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
- 
-
-
-
-
-/* Ocultar slider desktop en mobile */
-@media (max-width: 767px) {
-  .slider:not(.slider-mobile) {
-    display: none;
-  }
-  .slider-mobile {
-    display: block;
-    height: 300px; /* ajustalo si querés */
-  }
-}
-
-/* Ocultar slider mobile en desktop */
-@media (min-width: 768px) {
-  .slider-mobile {
-    display: none;
-  }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   .producto {
-      background: white;
-      border-radius: 6px;
-      padding: 1rem;
+    header {
+      position: sticky;
+      top: 30px;
+      background-color: #FFF4EB;
+      z-index: 999;
       display: flex;
       flex-direction: column;
       align-items: center;
-      transition: transform 0.2s ease;
+      padding: 10px 0;
+      transition: all 0.3s ease;
     }
-    .producto:hover {
-      transform: scale(1.03);
+
+    header.shrink {
+      padding: 4px 0;
     }
+
+    header img {
+      height: 80px;
+      transition: height 0.3s ease;
+    }
+
+    header.shrink img {
+      height: 50px;
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    nav a {
+      color: #333333;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    .banner {
+      max-width: 1200px;
+      width: 95%;
+      margin: 40px auto 20px;
+    }
+
+    .banner img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .grid-productos {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .producto {
+      text-align: center;
+    }
+
     .producto img {
       width: 100%;
       height: auto;
-      max-height: 350px;
-      object-fit: cover;
-      border-radius: 4px;
-      margin-bottom: 0.8rem;
+      transition: transform 0.3s;
     }
-    .producto-nombre {
-      font-weight: 600;
-      color: #FF963B;
-      margin-bottom: 0.5rem;
-      text-align: center;
+
+    .producto img:hover {
+      transform: scale(1.05);
     }
-    .producto-descripcion {
-      font-size: 0.9rem;
-      color: #555;
-      text-align: center;
-      flex-grow: 1;
-      margin-bottom: 0.7rem;
+
+    .producto h3 {
+      margin-top: 10px;
+      font-size: 1.1rem;
     }
-    .producto-precio {
-      background-color: #FFC089;
-      color: #333;
+
+    .producto .precio {
+      margin-top: 5px;
+      color: #333333;
       font-weight: bold;
-      padding: 0.4rem 0.8rem;
-      border-radius: 4px;
-      user-select: none;
-      margin-bottom: 1rem;
     }
-    .btn-consulta {
-      background-color: #FF963B;
-      color: white;
+
+    .producto .ver-mas {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 6px 12px;
+      background-color: #FFCA9D;
+      color: #333333;
+      font-size: 0.9rem;
       border: none;
-      padding: 0.6rem 1.2rem;
-      border-radius: 20px;
       cursor: pointer;
-      text-decoration: none;
-      font-weight: 600;
-      transition: background-color 0.3s ease;
     }
-    .btn-consulta:hover {
-      background-color: #e07b2f;
-    }
+
     footer {
+      background-color: #FFC089;
+      padding: 40px 20px;
       text-align: center;
-      font-size: 0.85rem;
-      color: #999;
-      margin: 3rem 0 1rem 0;
+      color: #333;
     }
-  
 
+    footer img {
+      height: 60px;
+      margin-bottom: 10px;
+    }
 
+    @media (max-width: 768px) {
+      header {
+        top: 25px;
+      }
 
+      .anuncio {
+        font-size: 0.8rem;
+      }
 
-.banner-mobile-fijo {
-  display: none;
-}
+      nav {
+        display: none;
+      }
 
-@media (max-width: 767px) {
-  .banner-mobile-fijo {
-    display: block !important;
-    max-width: 1140px;
-    margin: 100px auto 2rem auto;
-  }
-  
-  .slider {
-    display: none !important;
-  }
-}
+      .hamburguesa {
+        display: block;
+        cursor: pointer;
+        font-size: 1.5rem;
+      }
 
-
-
-body {
-  padding-top: 80px; /* para que el header fijo no tape nada */
-}
-
-.banner-mobile-fijo {
-  display: none; /* por defecto, oculto */
-  max-width: 828px;
-  margin-top:50px;
-}
-
-.banner-mobile-fijo img {
-  width: 100%;
-  height: auto;
-  max-height: 400px; /* altura cómoda, no un paredón */
-  display: block;
-}
-
-@media (max-width: 767px) {
-  .banner-mobile-fijo {
-    display: block; /* sólo en móviles */
-  }
-}
-
-
-
-
-
-
-
-
-
-
-</style>
+      .grid-productos {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
 </head>
-
-
-
-
-
-
-
-
 <body>
-  
-<div class="anuncio" id="anuncio">
-    • Diseño y calidad en madera maciza •
-  </div>
-  <header id="header">
-    <div class="header-container">
-      <div class="logo">
-        <img src="https://raw.githubusercontent.com/cordislignea/cordislignea.github.io/main/logo.png" alt="Logo Cordis Lignea" />
-      </div>
-      <nav>
-        <ul>
-          <li><a href="#inicio">Inicio</a></li>
-          <li><a href="#muebles">Muebles</a></li>
-          <li><a href="#sobre">Sobre Cordis</a></li>
-          <li><a href="#contacto">Contacto</a></li>
-        </ul>
-      </nav>
-    </div>
+  <div class="anuncio">• Diseño y calidad en madera maciza •</div>
+
+  <header id="mainHeader">
+    <img src="https://raw.githubusercontent.com/cordislignea/cordislignea.github.io/main/logo.png" alt="Cordis Lignea">
+    <div class="hamburguesa">☰</div>
+    <nav>
+      <a href="#">Inicio</a>
+      <a href="#">Productos</a>
+      <a href="#">Contacto</a>
+      <a href="#">Preguntas Frecuentes</a>
+      <a href="#">Info importante</a>
+      <a href="#">Quiénes Somos</a>
+    </nav>
   </header>
-  
 
+  <main>
+    <section class="banner">
+      <picture>
+        <source media="(max-width: 768px)" srcset="https://raw.githubusercontent.com/cordislignea/cordislignea.github.io/blob/main/banner-mobile%20.png">
+        <img src="https://raw.githubusercontent.com/cordislignea/cordislignea.github.io/main/banner-desktop.png" alt="Banner Cordis Lignea">
+      </picture>
+    </section>
 
-
-
-<div class="banner-mobile-fijo">
-  <img src="https://raw.githubusercontent.com/cordislignea/cordislignea.github.io/main/banner-mobile1.png" alt="Banner móvil Cordis Lignea" />
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<section class="slider" id="slider">
-    <div class="slide active" style="background-image: url('https://raw.githubusercontent.com/cordislignea/cordislignea.github.io/main/banner-desktop.png');"></div>
-    <div class="slide" style="background-image: url('https://raw.githubusercontent.com/cordislignea/cordislignea.github.io/main/banner-desktop2.png');"></div>
-  </section>
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-<main>
-    <section class="grid-container" id="muebles">
-      <article class="producto">
-        <img src="ruta/a/tu/imagen1.jpg" alt="Mueble 1" />
-        <div class="producto-nombre">Mueble 1</div>
-        <div class="producto-descripcion">Descripción breve del mueble 1.</div>
-        <div class="producto-precio">$10.000</div>
-        <a href="mailto:contacto@cordislignea.com?subject=Consulta%20por%20Mueble%201" class="btn-consulta">Consultar</a>
-      </article>
+    <section class="grid-productos">
+      <div class="producto">
+        <img src="imagen-producto1.jpg" alt="Mueble 1">
+        <h3>Nombre del Mueble</h3>
+        <p class="precio">$XX.XXX,00</p>
+        <a class="ver-mas" href="#">Ver más</a>
+      </div>
+      <!-- Repetir .producto para más muebles -->
     </section>
   </main>
-  <footer id="contacto">
-    © Cordis Lignea - Carpintería Artesanal
+
+  <footer>
+    <img src="https://raw.githubusercontent.com/cordislignea/cordislignea.github.io/main/logo.png" alt="Cordis Lignea">
+    <p>Seguinos en nuestras redes y contactanos:</p>
+    <p>cordisligneadeco@gmail.com</p>
+    <p>Pablo Podestá, zona de retiro</p>
+    <p>© 2025 Cordis Lignea. Todos los derechos reservados.</p>
   </footer>
+
   <script>
-   
-
- const header = document.getElementById('header');
-    const anuncio = document.getElementById('anuncio');
+    const header = document.getElementById('mainHeader');
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        header.classList.add('scrolled');
-        anuncio.classList.add('oculto');
-      } else {
-        header.classList.remove('scrolled');
-        anuncio.classList.remove('oculto');
-      }
+      header.classList.toggle('shrink', window.scrollY > 50);
     });
-
-    const slider = document.getElementById('slider');
-    const slides = slider.querySelectorAll('.slide');
-    let currentIndex = 0;
-    const interval = 5000;
-
-    
-function showSlide(index) {
-      slides.forEach((slide, i) => {
-        slide.classList.toggle('active', i === index);
-      });
-    }
-
-   
-
-    function nextSlide() {
-      currentIndex = (currentIndex + 1) % slides.length;
-      showSlide(currentIndex);
-    }
-
-    setInterval(nextSlide, interval);
   </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </body>
 </html>
