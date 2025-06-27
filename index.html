@@ -250,6 +250,53 @@
 
 
 
+.banner-mobile-fijo {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .banner-mobile-fijo {
+    display: block;
+    max-width: 1140px;
+    margin: 100px auto 2rem auto; /* mismo margen que el slider desktop */
+  }
+  
+  /* Ocultar el slider desktop en móvil para que no se superpongan */
+  .slider {
+    display: none;
+  }
+}
+
+
+
+
+
+@media (max-width: 767px) {
+  .banner-mobile-fijo {
+    display: block;
+    max-width: 1140px;
+    margin: 100px auto 2rem auto;
+  }
+
+  .banner-mobile-fijo img {
+    width: 100%;
+    height: auto; /* mantiene proporción */
+    max-height: 300px; /* acá le ponés el máximo alto que querés */
+    object-fit: contain; /* hace que la imagen se ajuste sin cortar */
+    display: block;
+  }
+
+  .slider {
+    display: none;
+  }
+}
+
+
+
+
+
+
+
 
 
 
@@ -289,6 +336,20 @@
 
 
 
+  <!-- Banner móvil fijo -->
+<div class="banner-mobile-fijo">
+  <img src="https://raw.githubusercontent.com/cordislignea/cordislignea.github.io/main/banner-mobile1.png" alt="Banner móvil" style="width: 100%; height: auto; display: block;" />
+</div>
+ 
+
+
+
+
+
+
+
+
+
 <section class="slider" id="slider">
     <div class="slide active" style="background-image: url('https://raw.githubusercontent.com/cordislignea/cordislignea.github.io/main/banner-desktop.png');"></div>
     <div class="slide" style="background-image: url('https://raw.githubusercontent.com/cordislignea/cordislignea.github.io/main/banner-desktop2.png');"></div>
@@ -298,10 +359,6 @@
 
 
 
-<section class="slider slider-mobile" id="slider-mobile">
-  <div class="slide active" style="background-image: url('https://raw.githubusercontent.com/cordislignea/cordislignea.github.io/main/banner-mobile1.png');"></div>
-  <div class="slide" style="background-image: url('https://raw.githubusercontent.com/cordislignea/cordislignea.github.io/main/banner-mobile2.png');"></div>
-</section>
 
 
 
@@ -384,26 +441,7 @@
 
 
 
-<script>
-  const mobileSlides = document.querySelectorAll("#slider-mobile .slide");
-  let mobileIndex = 0;
 
-  function showMobileSlide(index) {
-    mobileSlides.forEach((slide, i) => {
-      slide.classList.toggle("active", i === index);
-    });
-  }
-
-  function nextMobileSlide() {
-    mobileIndex = (mobileIndex + 1) % mobileSlides.length;
-    showMobileSlide(mobileIndex);
-  }
-
-  if (window.innerWidth <= 767) {
-    showMobileSlide(mobileIndex);
-    setInterval(nextMobileSlide, 4000);
-  }
-</script>
 
 
 
