@@ -11,7 +11,6 @@
       padding: 0;
       box-sizing: border-box;
     }
-
     body {
       font-family: 'Playfair Display', serif;
       background-color: #FFF4EB;
@@ -19,8 +18,6 @@
       padding-top: 110px;
       margin: 0;
     }
-
-    /* Barra de anuncio */
     .anuncio {
       position: fixed;
       top: 0;
@@ -36,14 +33,11 @@
       z-index: 1100;
       transition: transform 0.3s ease, opacity 0.3s ease;
     }
-
     .anuncio.oculto {
       transform: translateY(-100%);
       opacity: 0;
       pointer-events: none;
     }
-
-    /* Header sin sombra */
     header {
       position: fixed;
       top: 30px;
@@ -54,37 +48,31 @@
       padding: 20px 0;
       transition: top 0.3s ease, padding 0.3s ease;
     }
-
     header.scrolled {
       top: 0;
       padding: 8px 0;
     }
-
     .header-container {
       max-width: 900px;
       margin: 0 auto;
       text-align: center;
       padding: 0 1rem;
     }
-
     .logo img {
       height: 130px;
       transition: height 0.3s ease;
     }
-
     header.scrolled .logo img {
       height: 60px;
     }
-
     nav ul {
       list-style: none;
       display: inline-flex;
       margin-top: 15px;
       gap: 30px;
-      padding: 0;
       justify-content: center;
+      padding: 0;
     }
-
     nav a {
       color: #333333;
       text-decoration: none;
@@ -92,58 +80,86 @@
       font-size: 16px;
       transition: color 0.3s ease;
     }
-
     nav a:hover {
       color: #FF963B;
     }
+   
 
 
 
-.slider {
-  width: 100%;
-  max-width: 1140px;
-  height: 500px;
-  margin: 100px auto 2rem auto;
-  position: relative;
-  overflow: hidden;
 
-.slider {
-  background-image: url('https://raw.githubusercontent.com/cordislignea/cordislignea.github.io/main/banner-desktop.png');
-  background-size: cover;
-  background-position: center;
-}
+ .slider {
+      width: 100%;
+      max-width: 1140px;
+      height: 500px;
+      margin: 100px auto 2rem auto;
+      position: relative;
+      overflow: hidden;
+    }
+   
+ .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      transition: opacity 0.8s ease-in-out, visibility 0s linear 0.8s;
+      z-index: 0;
+    }
+    .slide.active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      z-index: 1;
+      position: relative;
+      transition-delay: 0s;
+    }
+    @media (max-width: 767px) {
+      .slider {
+        height: 300px;
+      }
+    }
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 30px 1rem;
+    }
+    .grid-container {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @media (max-width: 767px) {
+      .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+ 
 
 
-}
 
-.slide {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  transition: opacity 0.8s ease-in-out, visibility 0s linear 0.8s;
-  z-index: 0;
-}
 
-.slide.active {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-  z-index: 1;
-  position: relative;
-  transition-delay: 0s;
-}
-
+/* Ocultar slider desktop en mobile */
 @media (max-width: 767px) {
-  .slider {
-    height: 300px;
+  .slider:not(.slider-mobile) {
+    display: none;
+  }
+  .slider-mobile {
+    display: block;
+    height: 300px; /* ajustalo si querés */
+  }
+}
+
+/* Ocultar slider mobile en desktop */
+@media (min-width: 768px) {
+  .slider-mobile {
+    display: none;
   }
 }
 
@@ -154,25 +170,20 @@
 
 
 
-    main {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 30px 1rem;
-    }
 
-    .grid-container {
-      display: grid;
-      gap: 1.5rem;
-      grid-template-columns: repeat(3, 1fr);
-    }
 
-    @media (max-width: 767px) {
-      .grid-container {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
 
-    .producto {
+
+
+
+
+
+
+
+
+
+
+   .producto {
       background: white;
       border-radius: 6px;
       padding: 1rem;
@@ -181,11 +192,9 @@
       align-items: center;
       transition: transform 0.2s ease;
     }
-
     .producto:hover {
       transform: scale(1.03);
     }
-
     .producto img {
       width: 100%;
       height: auto;
@@ -194,14 +203,12 @@
       border-radius: 4px;
       margin-bottom: 0.8rem;
     }
-
     .producto-nombre {
       font-weight: 600;
       color: #FF963B;
       margin-bottom: 0.5rem;
       text-align: center;
     }
-
     .producto-descripcion {
       font-size: 0.9rem;
       color: #555;
@@ -209,7 +216,6 @@
       flex-grow: 1;
       margin-bottom: 0.7rem;
     }
-
     .producto-precio {
       background-color: #FFC089;
       color: #333;
@@ -219,7 +225,6 @@
       user-select: none;
       margin-bottom: 1rem;
     }
-
     .btn-consulta {
       background-color: #FF963B;
       color: white;
@@ -231,131 +236,16 @@
       font-weight: 600;
       transition: background-color 0.3s ease;
     }
-
     .btn-consulta:hover {
       background-color: #e07b2f;
     }
-
     footer {
       text-align: center;
       font-size: 0.85rem;
       color: #999;
       margin: 3rem 0 1rem 0;
     }
-
-    @media(max-width: 767px) {
-      nav ul {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 20px;
-      }
-      nav a {
-        font-size: 14px;
-      }
-      main {
-        padding: 20px 1rem;
-      }
-      .producto img {
-        max-height: 250px;
-      }
-    }
   
-
-
-
-
-.desktop-only {
-  display: block;
-}
-
-.mobile-only {
-  display: none;
-}
-
-@media (max-width: 767px) {
-  .desktop-only {
-    display: none;
-  }
-
-  .mobile-only {
-    display: block;
-  }
-
-  .mobile-banner {
-    width: 95%;
-    height: auto;
-    display: block;
-    margin: 20px auto;
-    max-height: 300px;
-    object-fit: contain;
-  }
-}
-
-
-
-
-<script>
-  const slides = document.querySelectorAll('.slider .slide');
-  let currentIndex = 0;
-  const slideInterval = 4000; // 4 segundos
-
-  function showSlide(index) {
-    slides.forEach((slide, i) => {
-      slide.classList.toggle('active', i === index);
-    });
-  }
-
-  function nextSlide() {
-    currentIndex = (currentIndex + 1) % slides.length;
-    showSlide(currentIndex);
-  }
-
-  // Iniciar
-  showSlide(currentIndex);
-  setInterval(nextSlide, slideInterval);
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Cordis Lignea</title>
-  <!-- precarga imágenes slider -->
-  <link rel="preload" href="https://raw.githubusercontent.com/cordislignea/cordislignea.github.io/main/banner-desktop.png" as="image" />
-  <link rel="preload" href="https://raw.githubusercontent.com/cordislignea/cordislignea.github.io/main/banner-desktop2.png" as="image" />
-  <link rel="preload" href="https://raw.githubusercontent.com/cordislignea/cordislignea.github.io/main/banner-mobile1.png" as="image" />
-  <link rel="preload" href="https://raw.githubusercontent.com/cordislignea/cordislignea.github.io/main/banner-mobile2.png" as="image" />
-  <!-- demás etiquetas meta, estilos y scripts -->
-
-<link rel="preload" href="https://raw.githubusercontent.com/cordislignea/cordislignea.github.io/main/banner-desktop.png" as="image" />
-<link rel="preload" href="https://raw.githubusercontent.com/cordislignea/cordislignea.github.io/main/banner-desktop2.png" as="image" />
-
-
-
-
-</head>
-
-
-
-
-
-
-
 
 
 
@@ -368,14 +258,18 @@
 
 </style>
 </head>
-<body>
 
-  <!-- Barra de anuncio -->
+
+
+
+
+
+
+
+<body>
   <div class="anuncio" id="anuncio">
     • Diseño y calidad en madera maciza •
   </div>
-
-  <!-- Header -->
   <header id="header">
     <div class="header-container">
       <div class="logo">
@@ -391,23 +285,23 @@
       </nav>
     </div>
   </header>
-
   
 
-<!-- SLIDER INTEGRADO -->
+
+
 <section class="slider" id="slider">
-  <div class="slide active desktop-only" style="background-image: url('https://raw.githubusercontent.com/cordislignea/cordislignea.github.io/main/banner-desktop.png');"></div>
-  <div class="slide desktop-only" style="background-image: url('https://raw.githubusercontent.com/cordislignea/cordislignea.github.io/main/banner-desktop2.png');"></div>
+    <div class="slide active" style="background-image: url('https://raw.githubusercontent.com/cordislignea/cordislignea.github.io/main/banner-desktop.png');"></div>
+    <div class="slide" style="background-image: url('https://raw.githubusercontent.com/cordislignea/cordislignea.github.io/main/banner-desktop2.png');"></div>
+  </section>
+  
 
-  <!-- Versión mobile con <img> -->
-  <div class="slide mobile-only">
-    <img src="https://raw.githubusercontent.com/cordislignea/cordislignea.github.io/main/banner-mobile1.png" alt="Banner Mobile 1" class="mobile-banner" />
-  </div>
-  <div class="slide mobile-only">
-    <img src="https://raw.githubusercontent.com/cordislignea/cordislignea.github.io/main/banner-mobile2.png" alt="Banner Mobile 2" class="mobile-banner" />
-  </div>
+
+
+
+<section class="slider slider-mobile" id="slider-mobile">
+  <div class="slide active" style="background-image: url('https://raw.githubusercontent.com/cordislignea/cordislignea.github.io/main/banner-mobile1.png');"></div>
+  <div class="slide" style="background-image: url('https://raw.githubusercontent.com/cordislignea/cordislignea.github.io/main/banner-mobile2.png');"></div>
 </section>
-
 
 
 
@@ -419,7 +313,6 @@
 
 <main>
     <section class="grid-container" id="muebles">
-      <!-- Producto de ejemplo -->
       <article class="producto">
         <img src="ruta/a/tu/imagen1.jpg" alt="Mueble 1" />
         <div class="producto-nombre">Mueble 1</div>
@@ -429,15 +322,12 @@
       </article>
     </section>
   </main>
-
   <footer id="contacto">
     © Cordis Lignea - Carpintería Artesanal
   </footer>
-
   <script>
     const header = document.getElementById('header');
     const anuncio = document.getElementById('anuncio');
-
     window.addEventListener('scroll', () => {
       if (window.scrollY > 50) {
         header.classList.add('scrolled');
@@ -447,6 +337,41 @@
         anuncio.classList.remove('oculto');
       }
     });
+
+    const slider = document.getElementById('slider');
+    const slides = slider.querySelectorAll('.slide');
+    let currentIndex = 0;
+    const interval = 5000;
+    const isMobile = window.innerWidth <= 767;
+
+    if (isMobile) {
+      slides.forEach((slide, index) => {
+        const img = document.createElement('img');
+        img.src = index === 0 
+          ? 'https://raw.githubusercontent.com/cordislignea/cordislignea.github.io/main/banner-mobile1.png' 
+          : 'https://raw.githubusercontent.com/cordislignea/cordislignea.github.io/main/banner-mobile2.png';
+        img.alt = `Banner Mobile ${index + 1}`;
+        img.style.width = '100%';
+        img.style.height = '100%';
+        img.style.objectFit = 'cover';
+        slide.style.backgroundImage = '';
+        slide.innerHTML = '';
+        slide.appendChild(img);
+      });
+    }
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+      });
+    }
+
+    function nextSlide() {
+      currentIndex = (currentIndex + 1) % slides.length;
+      showSlide(currentIndex);
+    }
+
+    setInterval(nextSlide, interval);
   </script>
 
 
@@ -459,48 +384,30 @@
 
 
 
-
-
-
-
-
 <script>
-  const header = document.getElementById('header');
-  const anuncio = document.getElementById('anuncio');
+  const mobileSlides = document.querySelectorAll("#slider-mobile .slide");
+  let mobileIndex = 0;
 
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-      header.classList.add('scrolled');
-      anuncio.classList.add('oculto');
-    } else {
-      header.classList.remove('scrolled');
-      anuncio.classList.remove('oculto');
-    }
-  });
-</script>
-
-
-
-
-
-
-
-<script>
-  const slides = document.querySelectorAll(".slide");
-  const isMobile = window.matchMedia("(max-width: 767px)").matches;
-
-  if (isMobile) {
-    slides[0].style.backgroundImage = "url('https://raw.githubusercontent.com/cordislignea/cordislignea.github.io/main/banner-mobile%20.png')";
-    slides[1].style.backgroundImage = "url('https://raw.githubusercontent.com/cordislignea/cordislignea.github.io/main/banner-mobile%202.png')";
+  function showMobileSlide(index) {
+    mobileSlides.forEach((slide, i) => {
+      slide.classList.toggle("active", i === index);
+    });
   }
 
-  let current = 0;
-  setInterval(() => {
-    slides[current].classList.remove("active");
-    current = (current + 1) % slides.length;
-    slides[current].classList.add("active");
-  }, 5000);
+  function nextMobileSlide() {
+    mobileIndex = (mobileIndex + 1) % mobileSlides.length;
+    showMobileSlide(mobileIndex);
+  }
+
+  if (window.innerWidth <= 767) {
+    showMobileSlide(mobileIndex);
+    setInterval(nextMobileSlide, 4000);
+  }
 </script>
+
+
+
+
 
 
 
