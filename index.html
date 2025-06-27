@@ -268,6 +268,28 @@
 
 
 
+body {
+  padding-top: 80px; /* para que el header fijo no tape nada */
+}
+
+.banner-mobile-fijo {
+  display: none; /* por defecto, oculto */
+  max-width: 828px;
+  margin-top:50px;
+}
+
+.banner-mobile-fijo img {
+  width: 100%;
+  height: auto;
+  max-height: 400px; /* altura cómoda, no un paredón */
+  display: block;
+}
+
+@media (max-width: 767px) {
+  .banner-mobile-fijo {
+    display: block; /* sólo en móviles */
+  }
+}
 
 
 
@@ -289,7 +311,8 @@
 
 
 <body>
-  <div class="anuncio" id="anuncio">
+  
+<div class="anuncio" id="anuncio">
     • Diseño y calidad en madera maciza •
   </div>
   <header id="header">
@@ -313,9 +336,8 @@
 
 
 <div class="banner-mobile-fijo">
-  <img src="https://raw.githubusercontent.com/cordislignea/cordislignea.github.io/main/banner-mobile1.png" alt="Banner móvil Cordis Lignea" style="width: 100%; height: auto; display: block;" />
+  <img src="https://raw.githubusercontent.com/cordislignea/cordislignea.github.io/main/banner-mobile1.png" alt="Banner móvil Cordis Lignea" />
 </div>
-
 
 
 
@@ -364,7 +386,9 @@
     © Cordis Lignea - Carpintería Artesanal
   </footer>
   <script>
-    const header = document.getElementById('header');
+   
+
+ const header = document.getElementById('header');
     const anuncio = document.getElementById('anuncio');
     window.addEventListener('scroll', () => {
       if (window.scrollY > 50) {
@@ -380,29 +404,15 @@
     const slides = slider.querySelectorAll('.slide');
     let currentIndex = 0;
     const interval = 5000;
-    const isMobile = window.innerWidth <= 767;
 
-    if (isMobile) {
-      slides.forEach((slide, index) => {
-        const img = document.createElement('img');
-        img.src = index === 0 
-          ? 'https://raw.githubusercontent.com/cordislignea/cordislignea.github.io/main/banner-mobile1.png' 
-          : 'https://raw.githubusercontent.com/cordislignea/cordislignea.github.io/main/banner-mobile2.png';
-        img.alt = `Banner Mobile ${index + 1}`;
-        img.style.width = '100%';
-        img.style.height = '100%';
-        img.style.objectFit = 'cover';
-        slide.style.backgroundImage = '';
-        slide.innerHTML = '';
-        slide.appendChild(img);
-      });
-    }
-
-    function showSlide(index) {
+    
+function showSlide(index) {
       slides.forEach((slide, i) => {
         slide.classList.toggle('active', i === index);
       });
     }
+
+   
 
     function nextSlide() {
       currentIndex = (currentIndex + 1) % slides.length;
