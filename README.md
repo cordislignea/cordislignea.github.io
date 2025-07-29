@@ -1,6 +1,6 @@
 # Cordis Lignea - No intentes copiar
 
-Esta página es el fruto de mis esfuerzo, creatividad y dedicación.  
+Esta página es el fruto de mi esfuerzo, creatividad y dedicación.  
 No soy programadora web profesional, pero puse todo mi empeño para crear este espacio único.
 
 Si estás pensando en copiar, mejor ahorrate el intento:  
